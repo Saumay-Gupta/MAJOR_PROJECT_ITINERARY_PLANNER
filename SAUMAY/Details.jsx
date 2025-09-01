@@ -2,7 +2,9 @@ import { useState } from "react";
 
 function Details() {
   let [destination, setDestination] = useState("");
-  let [days, setDays] = useState("");
+  
+  let [to, setTo] = useState("");
+  let [from,setFrom] = useState("");
 
   let [budget, setBudget] = useState("");
   let [group, setGroup] = useState("");
@@ -45,19 +47,32 @@ function Details() {
             className="border border-black w-full pl-2 rounded"
           />
 
-          <h1 className="font-medium pt-8">How many days are you planning?</h1>
-          <input
-            type="text"
-            value={days}
-            onChange={(e) => setDays(e.target.value)}
-            placeholder="Ex. 4"
-            className="border border-black w-full pl-2 rounded"
-          />
+          <h1 className="font-medium pt-8">When you are planning?</h1>
+          <div className="flex">
+            <div className="flex flex-col">
+              <span className="mt-2 mb-1">Start Date</span>
+              <input
+                type="date"
+                value={to}
+                onChange={(e) => setTo(e.target.value)}
+                className="border border-black w-50 pl-2 rounded"
+              />
+            </div>
+            <div className="flex flex-col">
+              <span className="mt-2 mb-1 mx-8">End Date</span>
+              <input
+                type="date"
+                value={from}
+                onChange={(e) => setFrom(e.target.value)}
+                className="border border-black w-50 pl-2 rounded mx-8"
+              />
+            </div>
+          </div>
 
           <h1 className="font-medium pt-10">What is your budget?</h1>
-          <div className="flex flex-row pt-1">
+          <div className="flex flex-row mt-1">
             <div
-              className={`border p-5 m-3 rounded cursor-pointer ${
+              className={`border p-5 mt-3 mb-3 rounded cursor-pointer ${
                 budget === "cheap" ? "border-amber-400" : "border-gray-300"
               }`}
               onClick={() => setBudget("cheap")}
@@ -66,7 +81,7 @@ function Details() {
               <p>Stay conscious of costs</p>
             </div>
             <div
-              className={`border p-5 m-3 rounded cursor-pointer ${
+              className={`border p-5 mx-4 mt-3 mb-3 rounded cursor-pointer ${
                 budget === "moderate" ? "border-amber-400" : "border-gray-300"
               }`}
               onClick={() => setBudget("moderate")}
@@ -75,7 +90,7 @@ function Details() {
               <p>Keep cost on the average side</p>
             </div>
             <div
-              className={`border p-5 m-3 rounded cursor-pointer ${
+              className={`border p-5 mt-3 mb-3 rounded cursor-pointer ${
                 budget === "luxury" ? "border-amber-400" : "border-gray-300"
               }`}
               onClick={() => setBudget("luxury")}
@@ -90,7 +105,7 @@ function Details() {
           </h1>
           <div className="flex flex-row pt-1">
             <div
-              className={`border p-5 m-3 rounded cursor-pointer ${
+              className={`border p-5 mt-3 mb-3 rounded cursor-pointer ${
                 group === "justMe" ? "border-amber-400" : "border-gray-300"
               }`}
               onClick={() => setGroup("justMe")}
@@ -98,7 +113,7 @@ function Details() {
               <p className="font-medium">Just Me</p>
             </div>
             <div
-              className={`border p-5 m-3 rounded cursor-pointer ${
+              className={`border p-5 mt-3 mb-3 mx-4 rounded cursor-pointer ${
                 group === "couple" ? "border-amber-400" : "border-gray-300"
               }`}
               onClick={() => setGroup("couple")}
@@ -106,7 +121,7 @@ function Details() {
               <p className="font-medium">Couple</p>
             </div>
             <div
-              className={`border p-5 m-3 rounded cursor-pointer ${
+              className={`border p-5 mt-3 mb-3 rounded cursor-pointer ${
                 group === "family" ? "border-amber-400" : "border-gray-300"
               }`}
               onClick={() => setGroup("family")}
@@ -114,7 +129,7 @@ function Details() {
               <p className="font-medium">Family</p>
             </div>
             <div
-              className={`border p-5 m-3 rounded cursor-pointer ${
+              className={`border p-5 mt-3 mb-3 mx-4 rounded cursor-pointer ${
                 group === "friends" ? "border-amber-400" : "border-gray-300"
               }`}
               onClick={() => setGroup("friends")}
