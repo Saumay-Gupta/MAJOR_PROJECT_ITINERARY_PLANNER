@@ -1,0 +1,2 @@
+# MAJOR_PROJECT_ITINERARY_PLANNER
+Itinerary Planner Using AI
