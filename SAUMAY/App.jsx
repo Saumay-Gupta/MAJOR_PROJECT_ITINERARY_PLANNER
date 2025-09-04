@@ -44,7 +44,7 @@ function App() {
   ]
 };
 
-  // This weatherData will be fetched through Pyhton API later on--
+  // This Itinerary Data will be fetched through Pyhton API later on--
   const planner = [
     { day: "Day 1 - Paris", activities: ["Visit Eiffel Tower", "Louvre Museum"] },
     { day: "Day 2 - Rome", activities: ["Colosseum tour", "Vatican City"] },
