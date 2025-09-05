@@ -1,64 +1,52 @@
 import { useState } from 'react'
-import Details from './components/Details.jsx'
-import Weather from './components/Weather.jsx'
-import Ininerary from './components/Itinerary.jsx';
+import BeforeLogIn from './components/BeforeLogIn'
+import AfterLogIn from './components/AfterLogIn'
+import Itinerary from './components/Itinerary';
+import Hotels from './components/Hotels';
+import { createBrowserRouter,RouterProvider, Navigate} from 'react-router-dom';
+import CabServices from './components/CabServices';
+import SuggestedPlaces from './components/SuggestedPlaces';
 
 function App() {
+    // This Planner Data will be recieved from Python file later-on:- 
+    const planner = [
+        { day: "Day 1 - Paris", activities: ["Visit Eiffel Tower", "Louvre Museum"] },
+        { day: "Day 2 - Rome", activities: ["Colosseum tour", "Vatican City"] },
+        { day: "Day 3 - London", activities: ["Big Ben", "London Eye"] },
+    ];
+    
+    const [isLoggedIn, setIsLoggedIn] = useState(true);
 
-  // This weatherData will be fetched through Pyhton API later on--
-  const weatherData = {
-  "destination": "Manali",
-  "start_date": "2025-09-10",
-  "end_date": "2025-09-15",
-  "weather_forecast": [
+    const router = createBrowserRouter([
     {
-      "date": "2025-09-10",
-      "temperature": {
-        "min": 14,
-        "max": 22
-      },
-      "condition": "Partly Cloudy",
-      "humidity": 65,
-      "wind_speed": 10
+      path: "/",
+      element: isLoggedIn ? <AfterLogIn /> : <BeforeLogIn />,
+      children: isLoggedIn
+        ? [
+            {
+              path: "/",
+              element: <Itinerary planner={planner}/>,
+            },
+            {
+              path: "Hotels",
+              element: <Hotels planner={planner}/>,
+            },
+            {
+              path: "CabServices",
+              element: <CabServices/>,
+            },
+            {
+              path: "SuggestedPlaces",
+              element: <SuggestedPlaces/>,
+            }
+          ]
+        : [],
     },
-    {
-      "date": "2025-09-11",
-      "temperature": {
-        "min": 13,
-        "max": 20
-      },
-      "condition": "Rain Showers",
-      "humidity": 72,
-      "wind_speed": 12
-    },
-    {
-      "date": "2025-09-12",
-      "temperature": {
-        "min": 13,
-        "max": 20
-      },
-      "condition": "Rain Showers",
-      "humidity": 72,
-      "wind_speed": 12
-    }
-  ]
-};
+    ]);
 
-  // This Itinerary Data will be fetched through Pyhton API later on--
-  const planner = [
-    { day: "Day 1 - Paris", activities: ["Visit Eiffel Tower", "Louvre Museum"] },
-    { day: "Day 2 - Rome", activities: ["Colosseum tour", "Vatican City"] },
-    { day: "Day 3 - London", activities: ["Big Ben", "London Eye"] },
-  ];
-
-  return (
-    <>
-      {/* <Header /> */}
-      {/* <Details /> */}
-      <Weather forecast={weatherData.weather_forecast} />
-      <Ininerary planner={planner}/>
-    </>
-  )
+    return (
+      <RouterProvider router={router} />
+    )
 }
 
 export default App
