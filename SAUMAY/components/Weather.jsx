@@ -7,7 +7,7 @@ function Weather({forecast}) {
         <h1 className='text-3xl font-medium'>Weather</h1>
         <div className='flex bg-blue-100 justify-center rounded p-2'>
 
-            <div className={`grid grid-cols-${forecast.length} gap-4`}>
+            <div className={`flex gap-4`}>
               {forecast.map((day, index) => (
                 <div key={index} className="border rounded p-4 shadow">
                   <p>{day.condition}</p>
@@ -29,3 +29,4 @@ function Weather({forecast}) {
 }
 
 export default Weather
+
